@@ -18,7 +18,8 @@ public class PlaystoreRepository implements Constants{
     private MongoDatabase db;
     // apps collection
     MongoCollection<Document> collection = db.getCollection(COLLECTION_APPS, Document.class);
+
     public List<Document> sortAppsByCategory() {
-        collection.
+        return null;
     }
 }

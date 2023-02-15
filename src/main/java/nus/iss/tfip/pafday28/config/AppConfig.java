@@ -21,23 +21,22 @@ public class AppConfig implements Constants {
     @Value("${mongo.url}")
     private String mongoUrl;
 
-    // @Bean
-    // public MongoTemplate createMongoTemplate() {
-    //     // create client
-    //     MongoClient client = MongoClients.create(mongoUrl);
-    //     // return template with client and database (must be correct)
-    //     return new MongoTemplate(client, DATABASE_PLAYSTORE);
-    // }
-
     @Bean
-    public MongoDatabase getMongoDB() {
-        // create a client
+    public MongoTemplate createMongoTemplate() {
+        // create client
         MongoClient client = MongoClients.create(mongoUrl);
-        // Get DB from client
-        MongoDatabase db = client.getDatabase(DATABASE_PLAYSTORE);
-        // Use collection
-        // MongoCollection<Document> apps = db.getCollection(COLLECTION_APPS, Document.class);
-
-        return db;
+        // return template with client and database (must be correct)
+        return new MongoTemplate(client, DATABASE_PLAYSTORE);
     }
+
+    // @Bean
+    // public MongoDatabase getMongoDB() {
+    //     // create a client
+    //     MongoClient client = MongoClients.create(mongoUrl);
+    //     // Get DB from client
+    //     MongoDatabase db = client.getDatabase(DATABASE_PLAYSTORE);
+    //     // Use collection
+    //     // MongoCollection<Document> apps = db.getCollection(COLLECTION_APPS, Document.class);
+    //     return db;
+    // }
 }

@@ -1,5 +1,7 @@
 package nus.iss.tfip.pafday28.config;
 
+import org.bson.Document;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,6 +9,8 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 
 import nus.iss.tfip.pafday28.Constants;
 
@@ -17,11 +21,23 @@ public class AppConfig implements Constants {
     @Value("${mongo.url}")
     private String mongoUrl;
 
+    // @Bean
+    // public MongoTemplate createMongoTemplate() {
+    //     // create client
+    //     MongoClient client = MongoClients.create(mongoUrl);
+    //     // return template with client and database (must be correct)
+    //     return new MongoTemplate(client, DATABASE_PLAYSTORE);
+    // }
+
     @Bean
-    public MongoTemplate createMongoTemplate() {
-        // create client
+    public MongoDatabase getMongoDB() {
+        // create a client
         MongoClient client = MongoClients.create(mongoUrl);
-        // return template with client and database (must be correct)
-        return new MongoTemplate(client, DATABASE_PLAYSTORE);
+        // Get DB from client
+        MongoDatabase db = client.getDatabase(DATABASE_PLAYSTORE);
+        // Use collection
+        // MongoCollection<Document> apps = db.getCollection(COLLECTION_APPS, Document.class);
+
+        return db;
     }
 }

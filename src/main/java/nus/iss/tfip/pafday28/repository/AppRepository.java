@@ -54,3 +54,24 @@ db.apps.aggregate([
                 .getMappedResults();
     }
 }
+/*
+db.apps.aggregate([
+    {
+      $match: {Rating: {$ne: "NaN"}}
+    },
+    {
+        $group: {
+            _id: "$Category",
+            count: {$sum: 1},
+            Apps: {
+                $push: {
+                    App: "$App",
+                    Rating: "$Rating",
+                    Reviews: "$Reviews",
+                    Price: "$Price"
+                }
+            }
+        }
+    }
+])
+ */

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.mongodb.client.MongoCollection;
@@ -11,15 +12,16 @@ import com.mongodb.client.MongoDatabase;
 
 import nus.iss.tfip.pafday28.Constants;
 
-@Repository
-public class PlaystoreRepository implements Constants{
+// @Repository
+public class PlaystoreRepository implements Constants {
 
-    @Autowired
+    @Autowired @Qualifier(QUALIFIER_MONGODB)
     private MongoDatabase db;
     // apps collection
-    MongoCollection<Document> collection = db.getCollection(COLLECTION_APPS, Document.class);
+    MongoCollection<Document> collection = db.getCollection(COLLECTION_APPS,
+    Document.class);
 
     public List<Document> sortAppsByCategory() {
-        return null;
+    return null;
     }
 }

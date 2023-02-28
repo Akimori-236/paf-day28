@@ -5,6 +5,7 @@ import org.bson.Document;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 import com.mongodb.client.MongoClient;
@@ -21,7 +22,8 @@ public class AppConfig implements Constants {
     @Value("${mongo.url}")
     private String mongoUrl;
 
-    @Bean
+    @Primary
+    @Bean(name=QUALIFIER_MONGOTEMPLATE)
     public MongoTemplate createMongoTemplate() {
         // create client
         MongoClient client = MongoClients.create(mongoUrl);
@@ -29,7 +31,7 @@ public class AppConfig implements Constants {
         return new MongoTemplate(client, DATABASE_PLAYSTORE);
     }
 
-    // @Bean
+    // @Bean(name=QUALIFIER_MONGODB)
     // public MongoDatabase getMongoDB() {
     //     // create a client
     //     MongoClient client = MongoClients.create(mongoUrl);

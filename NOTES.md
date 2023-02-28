@@ -64,13 +64,11 @@ import playstore into mongo
 
 group by app by category where cat !=NaN
 
-
 # Application Design
 
 ## Domain entity - model
 
 entity carries across all 3 layers - presentation, business, persistence
-
 
 leaky abstraction if entity leaks from one layer to another layer
 
@@ -79,3 +77,17 @@ entity has elements from presentation or persistence
 entity depends on a import that the rest of the app doesnt use
 
 using Utils to minimise leak
+
+
+
+
+# interview
+
+## last login
+
+sort timestamp desc and get first one
+
+
+## DB syncing
+
+get records with timestamps more than **
